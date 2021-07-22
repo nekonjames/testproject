@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178235553-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-178235553-1');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body class={% block classBody %}{% endblock %}>
+
+    <div class="header">
+        <a href="javascript:;" class="logo">
+            <svg class="icon icon-logo">
+                <use xlink:href="{{ asset('build/images/icon-logo.svg#logo') }}"></use>
+            </svg>
+        </a>
+        {% block headerLink %}{% endblock %}
+    </div>
+
+    <div class="main">
+        <div class="aside">
+            {% block asideBody %}{% endblock %}
+        </div>
+        <div class="main-content">
+            <div class="container">
+
+                <div class="main-heading">
+                    <div class="main-heading-content">
+                        {% block mainTitleIcon %}{% endblock %}
+                        <h2 class="main-heading-title">{% block mainTitleValue %}{% endblock %}</h2>
+                    </div>
+                    {% if block('subHeading') is defined %}
+                        <div class="sub-heading">
+                            <h3 class="sub-heading-title">{% block subHeading %}{% endblock %}</h3>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</body>
+</html>
+
+

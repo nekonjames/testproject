@@ -1,0 +1,6 @@
+# make some services public to make them testable
+services:
+  _defaults:
+    public: true
+
+  App\Client\SoapClientInterface: '@App\Client\MockSoapClient'

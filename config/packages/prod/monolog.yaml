@@ -1,0 +1,27 @@
+monolog:
+    handlers:
+        # Capture errors through "fingers_crossed", which triggers only on level error or higher, but buffers context.
+        main:
+            type: fingers_crossed
+            action_level: error
+            handler: grouped
+            buffer_size: 50
+            excluded_http_codes: [401, 403, 404, 503]
+
+        # fingers_crossed triggers both stream writing as a buffered sentry log
+        grouped:
+            type: group
+            members:
+                - streamed
+                - sentry_handler
+
+        # Stream log to pod output.
+        streamed:
+            type: stream
+            path: "php://stdout"
+            level: info
+
+        # send logs to sentry
+        sentry_handler:
+            type: service
+            id: Sentry\Monolog\Handler
